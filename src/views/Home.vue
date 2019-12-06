@@ -1,18 +1,40 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-content>
+    <section>
+
+      <v-parallax
+        dark
+        src="../assets/vbanner.webp"
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col v-if="isLoggedIn" class="text-center" cols="12">
+            <h1 class="display-1 font-weight-thin mb-4">Need an appointment with a doctor?!</h1>
+            <v-btn to="/register" large class="ml-5 mt-2">Get Started</v-btn>
+          </v-col>
+        </v-row>
+      </v-parallax>
+
+    </section>
+  </v-content>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      //
+    };
+  },
+
+  computed: {
+    ...mapGetters({
+      isLoggedIn: 'user/isLoggedIn',
+    }),
+  },
+};
 </script>
