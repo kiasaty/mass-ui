@@ -10,7 +10,7 @@
           align="center"
           justify="center"
         >
-          <v-col v-if="isLoggedIn" class="text-center" cols="12">
+          <v-col v-if="!isLoggedIn" class="text-center" cols="12">
             <h1 class="display-1 font-weight-thin mb-4">Need an appointment with a doctor?!</h1>
             <v-btn to="/register" large class="ml-5 mt-2">Get Started</v-btn>
           </v-col>
