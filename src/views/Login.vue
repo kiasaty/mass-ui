@@ -23,8 +23,8 @@
               </v-toolbar>
               <v-card-text>
 
-                <ul v-if="!!serverErrors" class="mb-10">
-                  <li v-for="error in serverErrors" :key="error" v-text="error[0]" class="red--text">
+                <ul v-if="typeof serverErrors == 'string'" class="mb-10">
+                  <li v-text="serverErrors" class="red--text">
                   </li>
                 </ul>
 
@@ -37,6 +37,7 @@
                     prepend-icon="mdi-account"
                     type="text"
                     v-model="credentials.username"
+                    :error-messages="serverErrors.username"
                     @keyup.enter="$refs.password.focus()"
                   ></v-text-field>
 
@@ -47,6 +48,7 @@
                     prepend-icon="mdi-lock"
                     type="password"
                     v-model="credentials.password"
+                    :error-messages="serverErrors.password"
                     @keyup.enter="login"
                   ></v-text-field>
                 </v-form>
@@ -114,7 +116,9 @@ export default {
                 }
 
               })
-              .catch(error => this.serverErrors = error.response.data.errors.detail)
+              .catch(error => 
+                this.serverErrors = error.response.data.errors.detail
+              )
       }
   }
 }
