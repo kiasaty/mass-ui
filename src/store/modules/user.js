@@ -9,7 +9,7 @@ export const state = {
 
 export const mutations = {
   SET_USER_DATA(state, data) {
-      state.user = data.user
+      state.user = data.data
       localStorage.setItem('user', JSON.stringify(data))
       axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
   },
@@ -45,16 +45,16 @@ export const getters = {
       return !!state.user
   },
   isAdmin(state) {
-      return (state.user) && (state.user.role == 'admin')
+      return (state.user) && (state.user.type == 'admin')
   },
   isDoctor(state) {
-      return (state.user) && (state.user.role == 'doctor')
+      return (state.user) && (state.user.type == 'doctor')
   },
   isSecretary(state) {
-      return (state.user) && (state.user.role == 'secretary')
+      return (state.user) && (state.user.type == 'secretary')
   },
   isPatient(state) {
-      return (state.user) && (state.user.role == 'patient')
+      return (state.user) && (state.user.type == 'patient')
   },
   getUser(state) {
       if(state.user) return state.user

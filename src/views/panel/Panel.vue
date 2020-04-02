@@ -78,15 +78,10 @@ export default {
       let menu = [];
       let menuItems = this.menuItems()
       menuItems.forEach(item => {
-        if(item.access.indexOf(this.user.role) >= 0) {
+        if(item.access.indexOf(this.user.type) >= 0) {
           menu.push(item)
         }
       });
-      // for(item in menuItems) {
-      //   if(item.access.indexOf(this.user.role) >= 0) {
-      //     menu.push(item)
-      //   }
-      // }
       return menu
     },
     ...mapGetters({
